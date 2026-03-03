@@ -39,9 +39,10 @@ class _ProductListItemState extends State<ProductListItem> {
             children: [
               SizedBox(
                 width: 150,
+                height: 100,
                 child: Image.asset(
                   "assets/img/products/${widget.product.image}",
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   color: AppColors.scaffoldColor,
                   colorBlendMode: BlendMode.darken,
                 ),
