@@ -15,6 +15,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
   int currentPageIndex = 0;
   late List<Widget> pages;
   late Home home;
+  late ProductList productList;
 
   @override
   void initState() {

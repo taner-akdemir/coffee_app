@@ -6,6 +6,7 @@ import 'package:coffee/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'models/category.dart' as category;
 
@@ -20,38 +21,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Coffee',
-      theme: primaryTheme,
-      //home: const Home(),
-      initialRoute: '/',
-      onGenerateRoute: (RouteSettings settings){
-        switch (settings.name) {
-          case '/splash':
-            return routeBuilder(settings, Splash());
-          case '/login':
-            return routeBuilder(settings, Login());
-          case '/productList':
-            return routeBuilder(settings, ProductList(category: settings.arguments as category.Category,));
-          case '/':
-            return routeBuilder(settings, BottomNavigatorBar());
-          default:
-            if (defaultTargetPlatform == TargetPlatform.iOS) {
-              return CupertinoPageRoute(
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Coffee',
+        theme: primaryTheme,
+        //home: const Home(),
+        initialRoute: '/',
+        onGenerateRoute: (RouteSettings settings){
+          switch (settings.name) {
+            case '/splash':
+              return routeBuilder(settings, Splash());
+            case '/login':
+              return routeBuilder(settings, Login());
+            case '/productList':
+              return routeBuilder(settings, ProductList());
+            case '/':
+              return routeBuilder(settings, BottomNavigatorBar());
+            default:
+              if (defaultTargetPlatform == TargetPlatform.iOS) {
+                return CupertinoPageRoute(
+                  builder: (context) => Scaffold(
+                    appBar: AppBar(title: Text("error")),
+                    body: Center(child: Text("404 not found")),
+                  ),
+                );
+              }
+              return MaterialPageRoute(
                 builder: (context) => Scaffold(
                   appBar: AppBar(title: Text("error")),
                   body: Center(child: Text("404 not found")),
                 ),
               );
-            }
-            return MaterialPageRoute(
-              builder: (context) => Scaffold(
-                appBar: AppBar(title: Text("error")),
-                body: Center(child: Text("404 not found")),
-              ),
-            );
-        }
-      },
+          }
+        },
+      ),
     );
   }
 }
