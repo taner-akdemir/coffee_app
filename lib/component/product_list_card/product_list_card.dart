@@ -24,7 +24,7 @@ class ProductListCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              height: 100,
+              height: 200,
               child: Image.asset(
                 "assets/img/products/${product.image}",
                 fit: BoxFit.contain,
@@ -74,7 +74,7 @@ class ProductListCard extends StatelessWidget {
                       ElevatedButton.icon(
                         onPressed: () {},
                         label: Text(
-                          "add",
+                          "add cart",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontWeight: FontWeight.bold,
