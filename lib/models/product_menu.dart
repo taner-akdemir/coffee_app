@@ -4,7 +4,7 @@ import '../component/product_icon_button/product_icon_button.dart';
 
 List<ProductIconButton> pibs = [
   ProductIconButton(
-    image: "coffee_1.jpeg",
+    image: "coffee_white_bg.jpeg",
     id: 1,
     onPressed: () {
       debugPrint("1");
@@ -12,7 +12,7 @@ List<ProductIconButton> pibs = [
     btnText: 'Coffee',
   ),
   ProductIconButton(
-    image: "sandvic_1.jpeg",
+    image: "sandwich_white_bg.jpeg",
     id: 2,
     onPressed: () {
       debugPrint("2");
@@ -20,7 +20,7 @@ List<ProductIconButton> pibs = [
     btnText: 'Sandwich',
   ),
   ProductIconButton(
-    image: "tea_1.jpeg",
+    image: "tea_white_bg.jpeg",
     id: 3,
     onPressed: () {
       debugPrint("3");
@@ -28,7 +28,7 @@ List<ProductIconButton> pibs = [
     btnText: 'Tea',
   ),
   ProductIconButton(
-    image: "cake_1.jpeg",
+    image: "cake_1_white_bg.jpeg",
     id: 4,
     onPressed: () {
       debugPrint("4");

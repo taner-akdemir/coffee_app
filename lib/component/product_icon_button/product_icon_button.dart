@@ -28,7 +28,7 @@ class ProductIconButton extends StatelessWidget {
               height: 80,
               child: Image.asset(
                 "assets/img/products/$image",
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 color: AppColors.secondaryCreamColor,
                 colorBlendMode: BlendMode.darken,
               ),

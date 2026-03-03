@@ -34,7 +34,10 @@ class Home extends StatelessWidget {
             shadowColor: AppColors.primaryBrownColor,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              primary: true, // henüz içinde ki elemanlar sayfaya küçük geliyor olsada yine de scroll efecti yapar
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              physics: const BouncingScrollPhysics(), // sürükleme bitince hala devam ediyor efekti verir
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // yukarı doğru kaymaya başladığı anda keyboard kapansın
               child: Row(
                 children: pibs.map((p) {
                   return p;
