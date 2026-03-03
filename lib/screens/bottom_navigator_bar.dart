@@ -3,6 +3,8 @@ import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee/screens/home/home.dart';
 
+import '../models/category.dart' as category;
+
 class BottomNavigatorBar extends StatefulWidget {
   const BottomNavigatorBar({super.key});
 
@@ -33,7 +35,13 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[currentPageIndex],
+        body: Navigator(
+          onGenerateRoute: (settings) {
+            Widget page = home;
+            if (settings.name == '/productList') page = ProductList(category: settings.arguments as category.Category,);
+            return MaterialPageRoute(builder: (_) => page);
+          },
+        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppColors.secondaryCreamColor,
           items: <BottomNavigationBarItem>[

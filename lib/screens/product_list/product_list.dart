@@ -8,7 +8,8 @@ import '../cart/cart_icon.dart';
 
 class ProductList extends StatefulWidget {
 
-  const ProductList({super.key});
+  final Category category;
+  const ProductList({super.key, required this.category});
 
   @override
   State<ProductList> createState() => _ProductListState();
@@ -19,16 +20,16 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
 
-    final category = ModalRoute.of(context)!.settings.arguments as Category;
+    //final category = ModalRoute.of(context)!.settings.arguments as Category;
 
     List<Product> filteredProducts = products
-        .where((p) => p.category.name == category.name)
+        .where((p) => p.category.name == widget.category.name)
         .toList();
     debugPrint(filteredProducts.length.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          category.title,
+          widget.category.title,
           style: GoogleFonts.poppins(
             textStyle: Theme.of(context).textTheme.titleLarge,
           ),

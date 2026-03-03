@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             case '/login':
               return routeBuilder(settings, Login());
             case '/productList':
-              return routeBuilder(settings, ProductList());
+              return routeBuilder(settings, ProductList(category: settings.arguments as category.Category,));
             case '/':
               return routeBuilder(settings, BottomNavigatorBar());
             default:
