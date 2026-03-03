@@ -2,18 +2,16 @@ import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProductIconButton extends StatelessWidget {
-  final String image;
-  final String btnText;
-  final dynamic id;
-  final Function() onPressed;
+import '../../models/category.dart';
 
-  const ProductIconButton({
+class CategoryItem extends StatelessWidget {
+  final Category category;
+  //final Function() onPressed;
+
+  const CategoryItem({
     super.key,
-    required this.image,
-    required this.btnText,
-    required this.id,
-    required this.onPressed,
+    required this.category,
+    //required this.onPressed,
   });
 
   @override
@@ -21,22 +19,24 @@ class ProductIconButton extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: (){
+          Navigator.pushNamed(context, "/productList", arguments: category);
+        },
         child: Column(
           children: [
             SizedBox(
               height: 80,
               child: Image.asset(
-                "assets/img/products/$image",
+                "assets/img/products/${category.image}",
                 fit: BoxFit.cover,
                 color: AppColors.secondaryCreamColor,
                 colorBlendMode: BlendMode.darken,
               ),
             ),
             SizedBox(height: 10),
-            if (btnText.trim() != "")
+            if (category.title.trim() != "")
               Text(
-                btnText,
+                category.title,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(fontWeight: FontWeight.bold),
                 ),

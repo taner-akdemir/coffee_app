@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../component/product_list_card/product_list_card.dart';
 import '../../component/search_text_field/search_text_field.dart';
-import '../../models/product_menu.dart';
+import '../../models/category.dart';
 import '../cart/cart_icon.dart';
 
 class Home extends StatelessWidget {

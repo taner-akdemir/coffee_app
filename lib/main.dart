@@ -1,10 +1,13 @@
 import 'package:coffee/screens/bottom_navigator_bar.dart';
 import 'package:coffee/screens/login/login.dart';
+import 'package:coffee/screens/product_list/product_list.dart';
 import 'package:coffee/screens/splash/splash.dart';
 import 'package:coffee/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'models/category.dart' as category;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
             return routeBuilder(settings, Splash());
           case '/login':
             return routeBuilder(settings, Login());
+          case '/productList':
+            return routeBuilder(settings, ProductList(category: settings.arguments as category.Category,));
           case '/':
             return routeBuilder(settings, BottomNavigatorBar());
           default:

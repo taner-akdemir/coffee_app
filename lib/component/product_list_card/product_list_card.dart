@@ -100,6 +100,6 @@ class ProductListCard extends StatelessWidget {
           ],
         ),
       ),
-    );;
+    );
   }
 }

@@ -11,6 +11,7 @@ class AppColors {
   static Color borderColor = Color.fromRGBO(220, 214, 207, 1);
   static Color starColor = Color.fromRGBO(255, 183, 0, 1);
   static Color textBrownColor = Color.fromRGBO(111, 78, 55, 1);
+  static Color cardBGColor = Color.fromRGBO(253, 247, 238, 1);
 }
 
 ThemeData primaryTheme = ThemeData(
