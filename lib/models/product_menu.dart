@@ -35,4 +35,12 @@ List<ProductIconButton> pibs = [
     },
     btnText: 'Cake',
   ),
+  ProductIconButton(
+    image: "waffle_1.jpeg",
+    id: 4,
+    onPressed: () {
+      debugPrint("4");
+    },
+    btnText: 'Waffle',
+  ),
 ];

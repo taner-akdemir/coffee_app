@@ -28,29 +28,34 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SearchTextField(),
-          Card(
-            color: AppColors.secondaryCreamColor,
-            elevation: 2,
-            shadowColor: AppColors.primaryBrownColor,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              primary: true, // henüz içinde ki elemanlar sayfaya küçük geliyor olsada yine de scroll efecti yapar
-              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              physics: const BouncingScrollPhysics(), // sürükleme bitince hala devam ediyor efekti verir
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // yukarı doğru kaymaya başladığı anda keyboard kapansın
-              child: Row(
-                children: pibs.map((p) {
-                  return p;
-                }).toList(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              color: AppColors.secondaryCreamColor,
+              elevation: 2,
+              shadowColor: AppColors.primaryBrownColor,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                primary: true, // henüz içinde ki elemanlar sayfaya küçük geliyor olsada yine de scroll efecti yapar
+                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                physics: const BouncingScrollPhysics(), // sürükleme bitince hala devam ediyor efekti verir
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // yukarı doğru kaymaya başladığı anda keyboard kapansın
+                child: Row(
+                  children: pibs.map((p) {
+                    return p;
+                  }).toList(),
+                ),
               ),
             ),
           ),
           SizedBox(height: 20),
-          const Text("Products", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
-          SizedBox(
-            height: 500,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const Text("Most Preferred", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+          ),
+          Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: ListView.builder(
                 itemCount: products.length,
                 itemBuilder: (context, index) {

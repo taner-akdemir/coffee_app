@@ -12,7 +12,7 @@ class ProductListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Card(
         elevation: 2,
         shadowColor: AppColors.primaryBrownColor,
@@ -24,20 +24,16 @@ class ProductListCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: double.infinity,
-              height: 250,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(1, 4, 1, 0),
-                child: Image.asset(
-                  "assets/img/products/${product.image}",
-                  fit: BoxFit.cover,
-                  color: AppColors.secondaryCreamColor,
-                  colorBlendMode: BlendMode.darken,
-                ),
+              height: 100,
+              child: Image.asset(
+                "assets/img/products/${product.image}",
+                fit: BoxFit.contain,
+                color: AppColors.secondaryCreamColor,
+                colorBlendMode: BlendMode.darken,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: Column(
                 children: [
                   Row(
@@ -50,7 +46,7 @@ class ProductListCard extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                              fontSize: 22
+                              fontSize: 20
                           ),
                         ),
                       ),
@@ -60,20 +56,20 @@ class ProductListCard extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 22
+                            fontSize: 20
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 5),
                   Row(
                     mainAxisAlignment:
                     MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       for (int i = 0; i < product.starCount; i++)
-                        Icon(Icons.star, color: Colors.orange),
+                        Icon(Icons.star, color: Colors.orange, size: 18,),
                       Expanded(child: SizedBox()),
                       ElevatedButton.icon(
                         onPressed: () {},
@@ -91,7 +87,7 @@ class ProductListCard extends StatelessWidget {
                           backgroundColor: AppColors.buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(8),
                             ),
                           ),
                         ),
