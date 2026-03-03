@@ -28,19 +28,17 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SearchTextField(),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Card(
-              color: AppColors.secondaryCreamColor,
-              elevation: 2,
-              shadowColor: AppColors.primaryBrownColor,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: pibs.map((p) {
-                    return p;
-                  }).toList(),
-                ),
+          Card(
+            color: AppColors.secondaryCreamColor,
+            elevation: 2,
+            shadowColor: AppColors.primaryBrownColor,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              child: Row(
+                children: pibs.map((p) {
+                  return p;
+                }).toList(),
               ),
             ),
           ),

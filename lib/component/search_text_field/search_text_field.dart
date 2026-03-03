@@ -26,7 +26,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       child: TextField(
         controller: _textController,
