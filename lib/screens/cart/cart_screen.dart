@@ -22,8 +22,15 @@ class _CartScreenState extends ConsumerState<CartScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Cart'),
+        title: Text(
+          'Your Cart',
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(color: AppColors.secondaryCreamColor),
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: AppColors.primaryBrownColor,
+        iconTheme: IconThemeData(color: AppColors.secondaryCreamColor),
         // actions: [],
       ),
       body: Column(
@@ -39,7 +46,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                     textStyle: TextStyle(
                       color: AppColors.primaryDarkBrownColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25
+                      fontSize: 25,
                     ),
                   ),
                 ),
@@ -47,9 +54,9 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   "$total ₺",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                        color: AppColors.primaryDarkBrownColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25
+                      color: AppColors.primaryDarkBrownColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
                     ),
                   ),
                 ),
@@ -86,26 +93,22 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {
-
-                },
+                onPressed: () {},
                 label: Text(
                   "Pay",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 18,
                     ),
                   ),
                 ),
-                icon: Icon(Icons.payment, color: Colors.white,),
+                icon: Icon(Icons.payment, color: Colors.white),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                 ),
               ),

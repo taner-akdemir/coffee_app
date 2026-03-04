@@ -1,4 +1,6 @@
 import 'package:coffee/screens/bottom_navigator_bar.dart';
+import 'package:coffee/screens/cart/cart_screen.dart';
+import 'package:coffee/screens/home/home.dart';
 import 'package:coffee/screens/login/login.dart';
 import 'package:coffee/screens/product_list/product_list.dart';
 import 'package:coffee/screens/splash/splash.dart';
@@ -35,6 +37,10 @@ class MyApp extends StatelessWidget {
               return routeBuilder(settings, Login());
             case '/productList':
               return routeBuilder(settings, ProductList(category: settings.arguments as category.Category,));
+            case '/home':
+              return routeBuilder(settings, Home());
+            case '/cart':
+              return routeBuilder(settings, CartScreen());
             case '/':
               return routeBuilder(settings, BottomNavigatorBar());
             default:

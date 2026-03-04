@@ -25,7 +25,6 @@ class _ProductListState extends State<ProductList> {
     List<Product> filteredProducts = products
         .where((p) => p.category.name == widget.category.name)
         .toList();
-    debugPrint(filteredProducts.length.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(
