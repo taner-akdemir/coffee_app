@@ -88,7 +88,7 @@ class _ProductListItemState extends State<ProductListItem> {
                           ),
                           onPressed: () {},
                           child: Text(
-                            "add cart",
+                            "add",
                             style: GoogleFonts.poppins(
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,

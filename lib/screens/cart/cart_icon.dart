@@ -2,17 +2,24 @@ import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../providers/cart_provider.dart';
+
 class CartIcon extends ConsumerWidget {
   const CartIcon({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final cartProducts = ref.watch(cartProvider);
+
     return Container(
       padding: const EdgeInsets.only(right: 10),
       child: Stack(
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/cart");
+            },
             icon: Icon(Icons.shopping_cart, size: 35),
           ),
           Positioned(
@@ -27,7 +34,7 @@ class CartIcon extends ConsumerWidget {
                 color: AppColors.buttonColor,
               ),
               child: Text(
-                '2',
+                '${cartProducts.length}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

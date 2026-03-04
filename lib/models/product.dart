@@ -6,7 +6,7 @@ class Product {
   final String name;
   final String image;
   final double price;
-  final int starCount;
+  late int starCount;
   final Category category;
   final String id;
 
@@ -22,7 +22,7 @@ class Product {
 }
 
 List<Product> products = [
-  Product(name: "Triliche", image: "cake_2.jpeg", price: 120, starCount: 5, category: Category.cake, id: uuid.v4()),
+  Product(name: "Triliche", image: "cake_2.jpeg", price: 120, starCount: 4, category: Category.cake, id: uuid.v4()),
   Product(name: "Tiramisu", image: "cake_1.jpeg", price: 130, starCount: 5, category: Category.cake,id: uuid.v4()),
   Product(name: "Cheese Cake", image: "cheese_cake_1.jpeg", price: 125, starCount: 5, category: Category.cake,id: uuid.v4()),
   Product(name: "Triliche-2", image: "cake_2.jpeg", price: 125, starCount: 5, category: Category.cake,id: uuid.v4()),

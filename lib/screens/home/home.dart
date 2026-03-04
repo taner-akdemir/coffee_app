@@ -1,6 +1,7 @@
 import 'package:coffee/models/product.dart';
 import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../component/product_list_card/product_list_card.dart';
@@ -8,11 +9,16 @@ import '../../component/search_text_field/search_text_field.dart';
 import '../../models/category.dart';
 import '../cart/cart_icon.dart';
 
-class Home extends StatelessWidget {
+class Home extends ConsumerWidget {
   const Home({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    //final cartProducts = ref.watch(cartProvider);
+
+    //final List<String> prdIdsInCart = cartProducts.map((p){return p.id;}).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -48,9 +54,8 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 10, top: 5),
             child: const Text("Most Preferred", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
           ),
           Expanded(

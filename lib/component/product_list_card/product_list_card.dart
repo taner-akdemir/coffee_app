@@ -1,16 +1,27 @@
+import 'package:coffee/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/product.dart';
 import '../../theme.dart';
 
-class ProductListCard extends StatelessWidget {
+class ProductListCard extends ConsumerWidget {
 
   final Product product;
   const ProductListCard({super.key, required this.product});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final cartProducts = ref.watch(cartProvider);
+
+    final List<String> prdIdsInCart = cartProducts.map((p){return p.id;}).toList();
+
+    if(product.starCount>5){
+      product.starCount = 5;
+    }
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Card(
@@ -46,7 +57,7 @@ class ProductListCard extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                              fontSize: 20
+                              fontSize: 21
                           ),
                         ),
                       ),
@@ -56,7 +67,7 @@ class ProductListCard extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20
+                            fontSize: 21
                           ),
                         ),
                       ),
@@ -69,16 +80,22 @@ class ProductListCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       for (int i = 0; i < product.starCount; i++)
-                        Icon(Icons.star, color: Colors.orange, size: 18,),
+                        Icon(Icons.star, color: Colors.orange, size: 20,),
+                      if( product.starCount<5)
+                        Icon(Icons.star_outline, color: Colors.orange, size: 20,),
                       Expanded(child: SizedBox()),
+                      if(!prdIdsInCart.contains(product.id))
                       ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          ref.watch(cartProvider.notifier).addProduct(product);
+                        },
                         label: Text(
-                          "add cart",
+                          "add",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              color: Colors.white,
+                              fontSize: 18
                             ),
                           ),
                         ),
@@ -92,6 +109,31 @@ class ProductListCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      if(prdIdsInCart.contains(product.id))
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            ref.watch(cartProvider.notifier).removeProduct(product);
+                          },
+                          label: Text(
+                            "remove",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 18
+                              ),
+                            ),
+                          ),
+                          icon: Icon(Icons.remove, color: Colors.white,),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.buttonColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ],

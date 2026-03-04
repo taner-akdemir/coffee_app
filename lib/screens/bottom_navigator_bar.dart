@@ -1,3 +1,4 @@
+import 'package:coffee/screens/cart/cart_screen.dart';
 import 'package:coffee/screens/product_list/product_list.dart';
 import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
           onGenerateRoute: (settings) {
             Widget page = home;
             if (settings.name == '/productList') page = ProductList(category: settings.arguments as category.Category,);
+            if (settings.name == '/cart') page = CartScreen();
             return MaterialPageRoute(builder: (_) => page);
           },
         ),
