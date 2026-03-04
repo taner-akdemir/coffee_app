@@ -22,12 +22,14 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
   int currentPageIndex = 0;
   late List<Widget> pages;
   late Home home;
+  late CartScreen cartScreen;
   late ProductList productList;
 
   @override
   void initState() {
     home = Home();
-    pages = <Widget>[home, home, home, home];
+    cartScreen = CartScreen();
+    pages = <Widget>[home, home, cartScreen, home];
     super.initState();
   }
 
