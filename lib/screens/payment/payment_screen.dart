@@ -26,6 +26,10 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
         expireYear = "",
         cvv = "";
 
+    void handleSubmit(){
+      debugPrint("$cardHolder -- $cardNumber");
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -38,7 +42,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
       ),
       body: Center(
         child: Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.onUserInteractionIfError,
           key: formKey,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -49,7 +53,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   hintText: "Card Holder",
                   validatorMessage: "card holder is invalid",
                   onChanged: (String? val) {
-                    setState(() {});
+                    if (val != null) {
+                      cardHolder = val;
+                    }
                   },
                   onSaved: (String? val) {
                     if (val != null) {
@@ -62,8 +68,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 CustomTextFormField(
                   hintText: "Card Number",
                   validatorMessage: "card number is invalid",
+                  maxLength: 16,
+                  inputType: TextInputType.number,
                   onChanged: (String? val) {
-                    setState(() {});
+                    if (val != null) {
+                      cardNumber = val;
+                    }
                   },
                   onSaved: (String? val) {
                     if (val != null) {
@@ -80,8 +90,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       child: CustomTextFormField(
                         hintText: "mm",
                         validatorMessage: "expire month is invalid",
+                        inputType: TextInputType.number,
                         onChanged: (String? val) {
-                          setState(() {});
+                          if (val != null) {
+                            expireMonth = val;
+                          }
                         },
                         onSaved: (String? val) {
                           if (val != null) {
@@ -96,8 +109,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       child: CustomTextFormField(
                         hintText: "yy",
                         validatorMessage: "expire year is invalid",
+                        inputType: TextInputType.number,
                         onChanged: (String? val) {
-                          setState(() {});
+                          if (val != null) {
+                            expireYear = val;
+                          }
                         },
                         onSaved: (String? val) {
                           if (val != null) {
@@ -112,8 +128,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       child: CustomTextFormField(
                         hintText: "cvv",
                         validatorMessage: "cvv is invalid",
+                        inputType: TextInputType.number,
                         onChanged: (String? val) {
-                          setState(() {});
+                          if (val != null) {
+                            cvv = val;
+                          }
                         },
                         onSaved: (String? val) {
                           if (val != null) {
@@ -145,7 +164,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     }
                     bool isValid = formKey.currentState!.validate();
                     if (!isValid) {
-                      showDialog(
+                      /*showDialog(
                         context: context,
                         builder: (ctx) {
                           return CustomShowDialog(
@@ -153,8 +172,17 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                             contentText: 'form is not valid',
                           );
                         },
-                      );
+                      );*/
+
+                      return;
                     }
+
+
+                    handleSubmit();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Processing Data...')),
+                    );
+
                     formKey.currentState!.save();
                     formKey.currentState!.reset();
                   },

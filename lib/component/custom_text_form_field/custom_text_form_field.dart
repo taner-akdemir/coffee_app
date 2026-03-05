@@ -50,6 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       textInputAction: widget.inputAction ?? TextInputAction.next,
       maxLength: widget.maxLength ?? -1 >>> 1,
       decoration: widget.inputDecoration ?? inputDecorationInternal,
+      //forceErrorText: "zzz",
       onSaved: (String? val) {
         if (val != null) {
           text = val;
@@ -57,15 +58,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         }
       },
       onChanged: (String val) {
-        setState(() {
-          widget.onChanged(val);
-        });
+        widget.onChanged(val);
       },
       validator: (String? val) {
         return val == null || val.isEmpty
-            ? widget.validatorMessage!.isEmpty
+            ? widget.validatorMessage != null && widget.validatorMessage!.isEmpty
                   ? "not valid"
-                  : ""
+                  : widget.validatorMessage
             : null;
       },
     );
