@@ -93,7 +93,9 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, "/payment");
+                },
                 label: Text(
                   "Pay",
                   style: GoogleFonts.poppins(

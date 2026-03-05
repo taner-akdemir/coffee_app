@@ -1,4 +1,5 @@
 import 'package:coffee/screens/cart/cart_screen.dart';
+import 'package:coffee/screens/payment/payment_screen.dart';
 import 'package:coffee/screens/product_list/product_list.dart';
 import 'package:coffee/screens/splash/splash.dart';
 import 'package:coffee/theme.dart';
@@ -63,6 +64,8 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                 );
               case '/home':
                 return routeBuilder(settings, Home());
+              case '/payment':
+                return routeBuilder(settings, PaymentScreen());
               case '/cart':
                 return routeBuilder(settings, CartScreen());
               default:
