@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../component/custom_elevated_icon_button/custom_elevated_icon_button.dart';
 import '../../component/product_list_card/product_list_card.dart';
 import '../../models/product.dart';
 
@@ -88,33 +89,15 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                     ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/payment");
-                },
-                label: Text(
-                  "Pay",
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                icon: Icon(Icons.payment, color: Colors.white),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
-                ),
-              ),
-            ),
+          CustomElevatedIconButton(
+            paddingBottom: 12,
+            paddingLeft: 12,
+            paddingTop: 12,
+            paddingRight: 12,
+            onPressed: () {
+              Navigator.pushNamed(context, "/payment");
+            },
+            labelText: 'Pay',
           ),
         ],
       ),

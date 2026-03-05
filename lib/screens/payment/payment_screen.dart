@@ -1,3 +1,4 @@
+import 'package:coffee/component/custom_show_dialog/custom_show_dialog.dart';
 import 'package:coffee/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -130,16 +131,31 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   paddingTop: 12,
                   paddingRight: 12,
                   onPressed: () {
-                    debugPrint("login form button pressed");
                     if (formKey.currentState == null) {
-                      debugPrint("all is empty");
+                      showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return CustomShowDialog(
+                            title: 'Error',
+                            contentText: 'form is empty',
+                          );
+                        },
+                      );
                       return;
                     }
                     bool isValid = formKey.currentState!.validate();
-                    if (isValid) {
-                      formKey.currentState!.save();
+                    if (!isValid) {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return CustomShowDialog(
+                            title: 'Error',
+                            contentText: 'form is not valid',
+                          );
+                        },
+                      );
                     }
-
+                    formKey.currentState!.save();
                     formKey.currentState!.reset();
                   },
                   labelText: 'Pay',
