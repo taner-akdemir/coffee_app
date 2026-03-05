@@ -31,6 +31,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: true, // keyboard ekranı kaplarsa ona göre resize et
       appBar: AppBar(
         title: Text(
           'Pay',
@@ -41,154 +42,157 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
         actions: [CartIcon()],
       ),
       body: Center(
-        child: Form(
-          autovalidateMode: AutovalidateMode.onUserInteractionIfError,
-          key: formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomTextFormField(
-                  hintText: "Card Holder",
-                  validatorMessage: "card holder is invalid",
-                  onChanged: (String? val) {
-                    if (val != null) {
-                      cardHolder = val;
-                    }
-                  },
-                  onSaved: (String? val) {
-                    if (val != null) {
-                      cardHolder = val;
-                    }
-                  },
-                ),
-
-                SizedBox(height: 10),
-                CustomTextFormField(
-                  hintText: "Card Number",
-                  validatorMessage: "card number is invalid",
-                  maxLength: 16,
-                  inputType: TextInputType.number,
-                  onChanged: (String? val) {
-                    if (val != null) {
-                      cardNumber = val;
-                    }
-                  },
-                  onSaved: (String? val) {
-                    if (val != null) {
-                      cardNumber = val;
-                    }
-                  },
-                ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: CustomTextFormField(
-                        hintText: "mm",
-                        validatorMessage: "expire month is invalid",
-                        inputType: TextInputType.number,
-                        onChanged: (String? val) {
-                          if (val != null) {
-                            expireMonth = val;
-                          }
-                        },
-                        onSaved: (String? val) {
-                          if (val != null) {
-                            expireMonth = val;
-                          }
-                        },
+        child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // hide keyboard while scroll
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteractionIfError,
+            key: formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextFormField(
+                    hintText: "Card Holder",
+                    validatorMessage: "card holder is invalid",
+                    onChanged: (String? val) {
+                      if (val != null) {
+                        cardHolder = val;
+                      }
+                    },
+                    onSaved: (String? val) {
+                      if (val != null) {
+                        cardHolder = val;
+                      }
+                    },
+                  ),
+          
+                  SizedBox(height: 10),
+                  CustomTextFormField(
+                    hintText: "Card Number",
+                    validatorMessage: "card number is invalid",
+                    maxLength: 16,
+                    inputType: TextInputType.number,
+                    onChanged: (String? val) {
+                      if (val != null) {
+                        cardNumber = val;
+                      }
+                    },
+                    onSaved: (String? val) {
+                      if (val != null) {
+                        cardNumber = val;
+                      }
+                    },
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: CustomTextFormField(
+                          hintText: "mm",
+                          validatorMessage: "expire month is invalid",
+                          inputType: TextInputType.number,
+                          onChanged: (String? val) {
+                            if (val != null) {
+                              expireMonth = val;
+                            }
+                          },
+                          onSaved: (String? val) {
+                            if (val != null) {
+                              expireMonth = val;
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: CustomTextFormField(
-                        hintText: "yy",
-                        validatorMessage: "expire year is invalid",
-                        inputType: TextInputType.number,
-                        onChanged: (String? val) {
-                          if (val != null) {
-                            expireYear = val;
-                          }
-                        },
-                        onSaved: (String? val) {
-                          if (val != null) {
-                            expireYear = val;
-                          }
-                        },
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: CustomTextFormField(
+                          hintText: "yy",
+                          validatorMessage: "expire year is invalid",
+                          inputType: TextInputType.number,
+                          onChanged: (String? val) {
+                            if (val != null) {
+                              expireYear = val;
+                            }
+                          },
+                          onSaved: (String? val) {
+                            if (val != null) {
+                              expireYear = val;
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: CustomTextFormField(
-                        hintText: "cvv",
-                        validatorMessage: "cvv is invalid",
-                        inputType: TextInputType.number,
-                        onChanged: (String? val) {
-                          if (val != null) {
-                            cvv = val;
-                          }
-                        },
-                        onSaved: (String? val) {
-                          if (val != null) {
-                            cvv = val;
-                          }
-                        },
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: CustomTextFormField(
+                          hintText: "cvv",
+                          validatorMessage: "cvv is invalid",
+                          inputType: TextInputType.number,
+                          onChanged: (String? val) {
+                            if (val != null) {
+                              cvv = val;
+                            }
+                          },
+                          onSaved: (String? val) {
+                            if (val != null) {
+                              cvv = val;
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                CustomElevatedIconButton(
-                  paddingBottom: 12,
-                  paddingLeft: 12,
-                  paddingTop: 12,
-                  paddingRight: 12,
-                  onPressed: () {
-                    if (formKey.currentState == null) {
-                      showDialog(
-                        context: context,
-                        builder: (ctx) {
-                          return CustomShowDialog(
-                            title: 'Error',
-                            contentText: 'form is empty',
-                          );
-                        },
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  CustomElevatedIconButton(
+                    paddingBottom: 12,
+                    paddingLeft: 12,
+                    paddingTop: 12,
+                    paddingRight: 12,
+                    onPressed: () {
+                      if (formKey.currentState == null) {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) {
+                            return CustomShowDialog(
+                              title: 'Error',
+                              contentText: 'form is empty',
+                            );
+                          },
+                        );
+                        return;
+                      }
+                      bool isValid = formKey.currentState!.validate();
+                      if (!isValid) {
+                        /*showDialog(
+                          context: context,
+                          builder: (ctx) {
+                            return CustomShowDialog(
+                              title: 'Error',
+                              contentText: 'form is not valid',
+                            );
+                          },
+                        );*/
+          
+                        return;
+                      }
+          
+          
+                      handleSubmit();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data...')),
                       );
-                      return;
-                    }
-                    bool isValid = formKey.currentState!.validate();
-                    if (!isValid) {
-                      /*showDialog(
-                        context: context,
-                        builder: (ctx) {
-                          return CustomShowDialog(
-                            title: 'Error',
-                            contentText: 'form is not valid',
-                          );
-                        },
-                      );*/
-
-                      return;
-                    }
-
-
-                    handleSubmit();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data...')),
-                    );
-
-                    formKey.currentState!.save();
-                    formKey.currentState!.reset();
-                  },
-                  labelText: 'Pay',
-                ),
-              ],
+          
+                      formKey.currentState!.save();
+                      formKey.currentState!.reset();
+                    },
+                    labelText: 'Pay',
+                  ),
+                ],
+              ),
             ),
           ),
         ),
