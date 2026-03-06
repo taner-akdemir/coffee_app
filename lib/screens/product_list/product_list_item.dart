@@ -1,20 +1,22 @@
 import 'package:coffee/component/qty/qty.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/product.dart';
+import '../../providers/cart_provider.dart';
 import '../../theme.dart';
 
-class ProductListItem extends StatefulWidget {
+class ProductListItem extends ConsumerStatefulWidget {
   final Product product;
 
   const ProductListItem({super.key, required this.product});
 
   @override
-  State<ProductListItem> createState() => _ProductListItemState();
+  ConsumerState<ProductListItem> createState() => _ProductListItemState();
 }
 
-class _ProductListItemState extends State<ProductListItem> {
+class _ProductListItemState extends ConsumerState<ProductListItem> {
   @override
   void initState() {
     super.initState();
@@ -25,8 +27,6 @@ class _ProductListItemState extends State<ProductListItem> {
   void setCount(int count) {
     qty = count;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,9 @@ class _ProductListItemState extends State<ProductListItem> {
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        ref.watch(cartProvider.notifier).addProduct(widget.product);
+                      },
                       child: Text(
                         "add",
                         style: GoogleFonts.poppins(
