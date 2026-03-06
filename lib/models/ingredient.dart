@@ -32,15 +32,27 @@ Map<int,Ingredient> ingredients = <int,Ingredient>{
 };
 
 enum Unit {
-  piece(),
-  slice(),
-  pinch(),
-  kg(),
-  mg(),
-  lt(),
-  ml(),
-  shot(),
-  cup(),
-  waterGlass(),
-  teaGlass(),
+  slice(name: 'slice', title: "Slice"),
+  pinch(name: 'pinch', title: "Pinch"),
+  kg(name: 'kg', title: "kg"),
+  mg(name: 'mg', title: "mg"),
+  lt(name: 'lt', title: "lt"),
+  ml(name: 'ml', title: "ml"),
+  shot(name: 'shot', title: "Shot"),
+  cup(name: 'cup', title: "Cup"),
+  waterGlass(name: 'water_glass', title: "Water Glass"),
+  teaGlass(name: 'tea_glass', title: "Tea Glass"),
+  large(name: 'large', title: "Large"),
+  medium(name: 'medium', title: "Medium"),
+  small(name: 'small', title: "Small"),
+  piece(name: 'piece', title: "Piece"),
+  g(name: 'gram', title: "Gram"),
+  portion(name: 'portion', title: "Portion");
+
+  const Unit({
+    required this.name,
+    required this.title,
+  });
+
+  final String name, title;
 }

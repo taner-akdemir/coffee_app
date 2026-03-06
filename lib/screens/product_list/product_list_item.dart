@@ -1,3 +1,4 @@
+import 'package:coffee/component/qty/qty.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,27 +20,42 @@ class _ProductListItemState extends State<ProductListItem> {
     super.initState();
   }
 
+  int qty = 0;
+
+  void setCount(int count) {
+    qty = count;
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).viewPadding;
+    double width = size.width;
+    double height = size.height-padding.top - kToolbarHeight;
+
     return GestureDetector(
       onTap: () {
         debugPrint(widget.product.name);
       },
-      child: Card(
+      child: Container(
         /*      shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),*/
-        elevation: 0,
+        //elevation: 0,
+        //FractionallySizedBox
         color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 150,
-                height: 100,
+        padding: const EdgeInsets.all(8.0),
+        height: height/4.3,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: width * 0.3 - 8,
+              child: Center(
                 child: Image.asset(
                   "assets/img/products/${widget.product.image}",
                   fit: BoxFit.contain,
@@ -47,63 +63,65 @@ class _ProductListItemState extends State<ProductListItem> {
                   colorBlendMode: BlendMode.darken,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.product.name,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: AppColors.primaryBrownColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 21,
+            ),
+            SizedBox(width: 12,),
+            SizedBox(
+              width: width - (width * 0.3) -30,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.product.name,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: AppColors.primaryBrownColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 21,
+                        overflow: TextOverflow.fade,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "${widget.product.price} ₺",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: AppColors.primaryBrownColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 21,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(width: 120, child: Qty(callback: setCount)),
+                  SizedBox(height: 10),
+                  SizedBox(
+                    width: width - (width * 0.3) - 30,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "add",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.secondaryCreamColor,
+                          ),
                         ),
                       ),
                     ),
-                    Text(
-                      "${widget.product.price} ₺",
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: AppColors.primaryBrownColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.buttonColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            "add",
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.secondaryCreamColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
